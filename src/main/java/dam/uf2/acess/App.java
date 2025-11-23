@@ -19,10 +19,12 @@ public class App {
             System.out.println("2. Agregar deporte");
             System.out.println("3. Listar deportistas");
             System.out.println("4. Agregar deportista");
+            System.out.println("5. Deportes sin deportistas");
+            System.out.println("6. Listar deportistas por deporte");
             System.out.println("0. Salir");
             System.out.print("Opción: ");
             op = sc.nextInt();
-            sc.nextLine(); // consume newline
+            sc.nextLine();
 
             if (op == 1) {
                 deporteCtrl.listar();
@@ -39,6 +41,12 @@ public class App {
                 String cod = sc.nextLine();
                 Integer codDeporte = cod.trim().isEmpty() ? null : Integer.parseInt(cod);
                 deportistaCtrl.agregar(nombre, codDeporte);
+            } else if (op == 5) {
+                deporteCtrl.listarSinDeportistas();
+            } else if (op == 6) {
+                System.out.print("Código de deporte: ");
+                int codDep = sc.nextInt();
+                deportistaCtrl.listarPorDeporte(codDep);
             } else if (op == 0) {
                 System.out.println("Saliendo...");
             } else {

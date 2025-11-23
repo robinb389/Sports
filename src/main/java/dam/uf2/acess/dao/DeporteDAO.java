@@ -40,4 +40,43 @@ public class DeporteDAO {
             return false;
         }
     }
+
+    public List<Deporte> getDeportesSinDeportistas() {
+        List<Deporte> lista = new ArrayList<>();
+        String sql = "SELECT * FROM DEPORTES_SIN_DEPORTISTA()";
+
+        try (Connection con = ConnectionManager.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                lista.add(new Deporte(rs.getInt("cod"), rs.getString("nombre")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
+    public List<String> getDeportistasByDeporte(int codDeporte) {
+        List<String> lista = new ArrayList<>();
+        String sql = "SELECT * FROM GET_DEPORTISTAS(?)";
+
+        try (Connection con = ConnectionManager.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, codDeporte);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String linea = rs.getInt("atleta_id") + " - " +
+                               rs.getString("atleta") +
+                               " (Deporte: " + rs.getString("deporte") + ")";
+                lista.add(linea);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
 }

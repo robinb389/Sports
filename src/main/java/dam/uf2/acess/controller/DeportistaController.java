@@ -1,8 +1,8 @@
 package dam.uf2.acess.controller;
 
-
 import java.util.List;
 
+import dam.uf2.acess.dao.DeporteDAO;
 import dam.uf2.acess.dao.DeportistaDAO;
 import dam.uf2.acess.model.Deportista;
 import dam.uf2.acess.view.DeportistaView;
@@ -23,5 +23,10 @@ public class DeportistaController {
             System.out.println("Error agregando deportista.");
         }
     }
-}
 
+    public void listarPorDeporte(Integer codDeporte) {
+        List<String> deportistas = new DeporteDAO().getDeportistasByDeporte(codDeporte);
+        System.out.println("\n--- DEPORTISTAS POR DEPORTE ---");
+        deportistas.forEach(System.out::println);
+    }
+}

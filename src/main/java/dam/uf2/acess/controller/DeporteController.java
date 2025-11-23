@@ -21,4 +21,10 @@ public class DeporteController {
             System.out.println("Error añadiendo deporte.");
         }
     }
+
+    public void listarSinDeportistas() {
+        List<Deporte> deportes = dao.getDeportesSinDeportistas();
+        System.out.println("\n--- DEPORTES SIN DEPORTISTAS ---");
+        deportes.forEach(System.out::println);
+    }
 }
