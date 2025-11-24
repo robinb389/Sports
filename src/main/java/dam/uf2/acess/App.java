@@ -21,6 +21,7 @@ public class App {
             System.out.println("4. Agregar deportista");
             System.out.println("5. Deportes sin deportistas");
             System.out.println("6. Listar deportistas por deporte");
+            System.out.println("7. Buscar deportista por nombre");
             System.out.println("0. Salir");
             System.out.print("Opción: ");
             op = sc.nextInt();
@@ -47,6 +48,10 @@ public class App {
                 System.out.print("Código de deporte: ");
                 int codDep = sc.nextInt();
                 deportistaCtrl.listarPorDeporte(codDep);
+            } else if (op == 7) {
+                System.out.print("Nombre a buscar: ");
+                String nombre = sc.nextLine();
+                deportistaCtrl.buscarPorNombre(nombre);
             } else if (op == 0) {
                 System.out.println("Saliendo...");
             } else {

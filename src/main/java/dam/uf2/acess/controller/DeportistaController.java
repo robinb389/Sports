@@ -29,4 +29,13 @@ public class DeportistaController {
         System.out.println("\n--- DEPORTISTAS POR DEPORTE ---");
         deportistas.forEach(System.out::println);
     }
+
+    public void buscarPorNombre(String nombre) {
+        List<Deportista> lista = dao.searchByName(nombre);
+        if (lista.isEmpty()) {
+            System.out.println("No se encontraron deportistas con ese nombre.");
+        } else {
+            DeportistaView.mostrarLista(lista);
+        }
+    }
 }
